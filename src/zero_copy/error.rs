@@ -56,6 +56,14 @@ pub struct Rich<I: Input + ?Sized> {
     found: Option<I::Token>,
 }
 
+impl<I: Input + ?Sized> Rich<I> {
+    pub fn span(&self) -> I::Span 
+        where I::Span: Clone
+    {
+        self.span.clone()
+    }
+}
+
 impl<I: Input + ?Sized> Error<I> for Rich<I>
 where
     I::Token: PartialEq,
@@ -71,6 +79,7 @@ where
             found,
         }
     }
+
 
     fn merge(mut self, other: Self) -> Self {
         for expected in other.expected {
