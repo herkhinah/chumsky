@@ -87,7 +87,7 @@ impl<E> Located<E> {
     }
 }
 
-mod internal {
+pub mod internal {
     use super::*;
 
     pub trait Mode {
